@@ -124,9 +124,9 @@ export class Game {
     }
 
     clear() {
-        for (let ix = 0; ix < this.nx; ix++) {
-            for (let iy = 0; iy < this.ny; iy++) {
-                this.setWhite(ix + 1, iy + 1);
+        for (let ix = 1; ix < this.nx + 1; ix++) {
+            for (let iy = 1; iy < this.ny + 1; iy++) {
+                this.setWhite(ix, iy);
             }
         }
     }
