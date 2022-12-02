@@ -9,6 +9,10 @@ const game = new Game(squareSize, nx, ny);
 
 let gamePaused = true;
 
+function click() {
+    game.click(mouseX, mouseY);
+}
+
 function setup() {
     // game.blinker(3, 3, 1)
     // game.toad(5, 5, 3);
@@ -21,7 +25,10 @@ function setup() {
     // game.blinker(5, 2, 0)
     // game.toad(8, 3, 0);
 
-    createCanvas(game.width + 2, game.height + 2);
+    const canvas = createCanvas(game.width + 2, game.height + 2);
+    canvas.parent("canvas");
+    canvas.mouseClicked(click);
+    
     strokeWeight(1);
 
     game.drawMesh();
@@ -36,10 +43,6 @@ function draw() {
     // game.step();
     // game.draw();
     game.stepAndDraw();
-}
-
-function mouseClicked() {
-    game.click(mouseX, mouseY);
 }
 
 function pauseGame() {
@@ -58,11 +61,16 @@ function step() {
     }
 }
 
+function clearIt() {
+    game.clear();
+    draw();
+}
+
 window.setup = setup;
 window.draw = draw;
-window.mouseClicked = mouseClicked;
 window.step = step;
 window.pauseGame = pauseGame;
+window.clearIt = clearIt;
 
 // function main() {
 //     const nx = 4;

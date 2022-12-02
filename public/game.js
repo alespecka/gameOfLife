@@ -111,19 +111,35 @@ export class Game {
         eraseEdge(this.board); 
     }
 
+    setWhite(ix, iy) {
+        this.board[iy][ix] = 0;
+        fill(255);
+        rect((ix - 1) * this.squareSize + 1, (iy - 1) * this.squareSize + 1, this.squareSize, this.squareSize);
+    }
+
+    setBlack(ix, iy) {
+        this.board[iy][ix] = 1;
+        fill(50);
+        rect((ix - 1) * this.squareSize + 1, (iy - 1) * this.squareSize + 1, this.squareSize, this.squareSize);
+    }
+
+    clear() {
+        for (let ix = 0; ix < this.nx; ix++) {
+            for (let iy = 0; iy < this.ny; iy++) {
+                this.setWhite(ix + 1, iy + 1);
+            }
+        }
+    }
+
     stepAndDraw() {
         this.countNeighbours();
     
         for (let ix = 1; ix < this.nx + 1; ix++) {
             for (let iy = 1; iy < this.ny + 1; iy++) {
                 if (this.board[iy][ix] == 1 && this.neighbours[iy][ix] != 2 && this.neighbours[iy][ix] != 3) {
-                    this.board[iy][ix] = 0;
-                    fill(255);
-                    rect((ix - 1) * this.squareSize + 1, (iy - 1) * this.squareSize + 1, this.squareSize, this.squareSize);
+                    this.setWhite(ix, iy);
                 } else if (this.board[iy][ix] == 0 && this.neighbours[iy][ix] == 3) {
-                    this.board[iy][ix] = 1;
-                    fill(50);
-                    rect((ix - 1) * this.squareSize + 1, (iy - 1) * this.squareSize + 1, this.squareSize, this.squareSize);
+                    this.setBlack(ix, iy);
                 }
             }
         }
@@ -157,7 +173,7 @@ export class Game {
     click(mouseX, mouseY) {
         const ix = Math.floor(mouseX / this.squareSize);
         const iy = Math.floor(mouseY / this.squareSize);
-        console.log(ix, iy);
+        // console.log(ix, iy);
 
         if (this.board[iy + 1][ix + 1]) {
             this.board[iy + 1][ix + 1] = 0;

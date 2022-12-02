@@ -1,12 +1,31 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="module" src="sketch.js"></script>
+    <style>
+      #buttonArea {
+        text-align: center;
+        margin: 5pt 0;
+      }
+      button {
+        padding: 3pt;
+        font-size: 20px;
+        margin: 5pt;
+      }
+      #all {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <div>
-      <button onclick="pauseGame()" id="pauseButton">Start</button>
-      <button onclick="step()" id="stepButton">Step</button>
+    <div id="all">
+      <div id="canvas">
+      </div>
+      <div id="buttonArea">
+        <button onclick="pauseGame()" id="pauseButton">Start</button>
+        <button onclick="step()">Step</button>
+        <button onclick="clearIt()">Clear</button>
+      </div>
     </div>
-    <script type="module" src="sketch.js"></script>
   </body>
 </html>
