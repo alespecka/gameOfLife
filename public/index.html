@@ -3,28 +3,56 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
     <script type="module" src="sketch.js"></script>
     <style>
-      #buttonArea {
+      .gameArea {
+        /* width: 80%; */
         text-align: center;
+      }
+      .buttonArea {
         margin: 5pt 0;
       }
-      button {
+      .buttonContainer {
+        width: 33%;
+        float: right;
         padding: 3pt;
         font-size: 20px;
         margin: 5pt;
       }
-      #all {
-        text-align: center;
+      button {
+        padding: 0.2ch 0.5ch;
+        font-size: 20px;
+        margin: 0 0.2ch;
+      }
+      input, #sliderValue, #sliderContainer {
+        padding: 0.5ch;
+      }
+      #sliderContainer {
+        text-align: right;
+        float: right;
+      }
+      #sliderValue {
+        float: right;
+        width: 3ch;
+        /* font-family: "Lucida Console", "Courier New", monospace; */
       }
     </style>
   </head>
   <body>
-    <div id="all">
+    <div class="gameArea">
       <div id="canvas">
       </div>
-      <div id="buttonArea">
-        <button onclick="pauseGame()" id="pauseButton">Start</button>
-        <button onclick="step()">Step</button>
-        <button onclick="clearIt()">Clear</button>
+      <div class="buttonArea">
+        <!-- <div class="button-container"></div> -->
+        <div class="buttonContainer sliderContainer">
+          <div id="sliderValue">4</div>
+          <div id="sliderContainer">
+            <input id="slider" onchange="sliderChange()" type="range" min="0" max="4" value="2">
+          </div>
+        </div>
+        <div class="buttonContainer">
+          <button onclick="pauseGame()" id="pauseButton">Start</button>
+          <button onclick="step()">Step</button>
+          <button onclick="clearIt()">Clear</button>
+        </div>
       </div>
     </div>
   </body>

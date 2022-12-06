@@ -2,9 +2,13 @@
 
 import {Game} from './game.js';
 
-const nx = 60;
-const ny = 30;
 const squareSize = 25;
+
+const width = document.querySelector(".gameArea").offsetWidth;
+const nx = Math.floor(width / squareSize);
+
+// const nx = 60;
+const ny = 30;
 const game = new Game(squareSize, nx, ny);
 
 let gamePaused = true;
@@ -63,7 +67,14 @@ function step() {
 
 function clearIt() {
     game.clear();
-    draw();
+}
+
+function sliderChange() {
+    const val = document.getElementById("slider").value;
+    console.log(val);
+    const freq = Math.pow(2, val);
+    document.getElementById("sliderValue").innerHTML = freq;
+    frameRate(freq);
 }
 
 window.setup = setup;
@@ -71,6 +82,7 @@ window.draw = draw;
 window.step = step;
 window.pauseGame = pauseGame;
 window.clearIt = clearIt;
+window.sliderChange = sliderChange;
 
 // function main() {
 //     const nx = 4;
